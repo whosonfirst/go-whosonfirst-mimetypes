@@ -1,5 +1,7 @@
 # go-whosonfirst-mimetypes
 
+There are many mime-type lookup tables. This one is ours.
+
 ## Important
 
 This is not ready for you.
@@ -14,3 +16,6 @@ make bin
 
 All of this package's dependencies are bundled with the code in the `vendor` directory.
 
+## See also
+
+* https://svn.apache.org/viewvc/httpd/httpd/branches/2.2.x/docs/conf/mime.types?view=co
