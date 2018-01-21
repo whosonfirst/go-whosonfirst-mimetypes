@@ -18,4 +18,7 @@ All of this package's dependencies are bundled with the code in the `vendor` dir
 
 ## See also
 
+* https://golang.org/pkg/mime/#ExtensionsByType
+* https://golang.org/pkg/net/http/#DetectContentType
 * https://svn.apache.org/viewvc/httpd/httpd/branches/2.2.x/docs/conf/mime.types?view=co
+* https://www.iana.org/assignments/media-types/media-types.xhtml
