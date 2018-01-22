@@ -153,7 +153,7 @@ func main() {
 	}
 
 	// build lookup tables
-	
+
 	lookup_table := make(map[string][]string)
 
 	for _, table := range flag.Args() {
