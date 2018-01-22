@@ -16,6 +16,71 @@ make bin
 
 All of this package's dependencies are bundled with the code in the `vendor` directory.
 
+## Usage
+
+```
+package main
+
+import (
+	"flag"
+	"fmt"
+	"github.com/whosonfirst/go-whosonfirst-mimetypes"
+	"log"
+	"os"
+	"strings"
+)
+
+func main() {
+
+	var extension = flag.Bool("extension", false, "Lookup mimetypes by extension")
+	var mimetype = flag.Bool("mimetype", false, "Lookup extensions by mimetype")
+
+	flag.Parse()
+
+	for _, input := range flag.Args() {
+
+		if *mimetype {
+			t := mimetypes.TypesByExtension(input)
+			fmt.Printf("%s\t%s\n", input, strings.Join(t, "\t"))
+		} else if *extension {
+			e := mimetypes.ExtensionsByType(input)
+			fmt.Printf("%s\t%s\n", input, strings.Join(e, "\t"))
+		} else {
+			log.Fatal("Invalid lookup type")
+		}
+	}
+
+	os.Exit(0)
+}
+```
+
+## Tools
+
+### wof-mimetype-lookup
+
+A simple command line tool to lookup mimetypes by extension or vice versa.
+
+```
+./bin/wof-mimetype-lookup -h
+Usage of ./bin/wof-mimetype-lookup:
+  -extension
+    	Lookup mimetypes by extension
+  -mimetype
+    	Lookup extensions by mimetype
+```
+
+The output is a line-separated list containing a tab-separated list of input (extension or mimetype) followed by one or more matched. For example:
+
+```
+./bin/wof-mimetype-lookup -mimetype '.json' jpg
+.json	application/json
+jpg	image/jpeg
+
+./bin/wof-mimetype-lookup -extension 'image/jpeg' 'image/gif'
+image/jpeg	jpeg	jpg	jpe
+image/gif	gif
+```
+
 ## Lookup tables
 
 Lookup tables are generated from two sources: The Apache `httpd` web servers mime.types definition and a custom file to add things that aren't included in the first source.
@@ -80,33 +145,6 @@ mkdir -p src/github.com/whosonfirst/go-whosonfirst-mimetypes
 cp *.go src/github.com/whosonfirst/go-whosonfirst-mimetypes/
 cp -r lookup src/github.com/whosonfirst/go-whosonfirst-mimetypes/
 if test -d vendor; then cp -r vendor/* src/; fi
-```
-
-## Tools
-
-### wof-mimetype-lookup
-
-A simple command line tool to lookup mimetypes by extension or vice versa.
-
-```
-./bin/wof-mimetype-lookup -h
-Usage of ./bin/wof-mimetype-lookup:
-  -extension
-    	Lookup mimetypes by extension
-  -mimetype
-    	Lookup extensions by mimetype
-```
-
-The output is a line-separated list containing a tab-separated list of input (extension or mimetype) followed by one or more matched. For example:
-
-```
-./bin/wof-mimetype-lookup -mimetype '.json' jpg
-.json	application/json
-jpg	image/jpeg
-
-./bin/wof-mimetype-lookup -extension 'image/jpeg' 'image/gif'
-image/jpeg	jpeg	jpg	jpe
-image/gif	gif
 ```
 
 ## See also
