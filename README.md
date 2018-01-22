@@ -54,6 +54,10 @@ func main() {
 }
 ```
 
+Both the `TypesByExtension` and `ExtensionsByType` functions return a list of strings. Although it is unlikely that any given extension will return multiple mime-types it's certainly possible so that's what we solve. Handy helper functions to test for and return singletons are in the works.
+
+When calling `TypesByExtension` you can pass extensions with or without a leading `.` character.
+
 ## Tools
 
 ### wof-mimetype-lookup
