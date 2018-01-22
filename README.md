@@ -16,6 +16,32 @@ make bin
 
 All of this package's dependencies are bundled with the code in the `vendor` directory.
 
+## Tools
+
+### wof-mimetype-lookup
+
+A simple command line tool to lookup mimetypes by extension or vice versa.
+
+```
+./bin/wof-mimetype-lookup -h
+Usage of ./bin/wof-mimetype-lookup:
+  -lookup string
+    	Valid options are to lookup by: extension; mimetype (default "extension")
+```
+
+For example:
+
+```
+./bin/wof-mimetype-lookup -lookup extension '.json' jpg
+.json	application/json
+jpg	image/jpeg
+
+./bin/wof-mimetype-lookup -lookup mimetype 'image/jpeg' 'image/gif'
+image/jpeg	jpeg	jpg	jpe
+image/gif	gif
+```
+
+
 ## See also
 
 * https://golang.org/pkg/mime/#ExtensionsByType
