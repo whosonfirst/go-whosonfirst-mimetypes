@@ -8,6 +8,7 @@ self:   prep rmdeps
 	if test -d src; then rm -rf src; fi
 	mkdir -p src/github.com/whosonfirst/go-whosonfirst-mimetypes
 	cp *.go src/github.com/whosonfirst/go-whosonfirst-mimetypes/
+	cp -r http src/github.com/whosonfirst/go-whosonfirst-mimetypes/
 	cp -r lookup src/github.com/whosonfirst/go-whosonfirst-mimetypes/
 	if test -d vendor; then cp -r vendor/* src/; fi
 
@@ -31,6 +32,7 @@ vendor-deps: rmdeps deps
 
 fmt:
 	go fmt cmd/*.go
+	go fmt http/*.go
 	go fmt lookup/*.go
 	go fmt *.go
 
