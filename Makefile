@@ -38,6 +38,7 @@ fmt:
 
 bin: 	self
 	@GOPATH=$(GOPATH) go build -o bin/wof-mimetype-lookup cmd/wof-mimetype-lookup.go
+	@GOPATH=$(GOPATH) go build -o bin/wof-mimetype-lookupd cmd/wof-mimetype-lookupd.go
 
 apache-lookup-table:
 	curl -s -o tables/apache.txt 'https://svn.apache.org/viewvc/httpd/httpd/branches/2.2.x/docs/conf/mime.types?view=co'
