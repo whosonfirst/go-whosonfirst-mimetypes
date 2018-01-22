@@ -11,21 +11,20 @@ import (
 
 func main() {
 
-	var lookup = flag.String("lookup", "extension", "Valid options are to lookup by: extension; mimetype")
+	var extension = flag.Bool("extension", false, "Lookup mimetypes by extension")
+	var mimetype = flag.Bool("mimetype", false, "Lookup extensions by mimetype")
 
 	flag.Parse()
 
 	for _, input := range flag.Args() {
 
-		switch *lookup {
-
-		case "extension":
+		if *mimetype {
 			t := mimetypes.TypesByExtension(input)
 			fmt.Printf("%s\t%s\n", input, strings.Join(t, "\t"))
-		case "mimetype":
+		} else if *extension {
 			e := mimetypes.ExtensionsByType(input)
 			fmt.Printf("%s\t%s\n", input, strings.Join(e, "\t"))
-		default:
+		} else {
 			log.Fatal("Invalid lookup type")
 		}
 	}
